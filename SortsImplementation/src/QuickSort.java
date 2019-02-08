@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
 public class QuickSort {
@@ -22,8 +21,18 @@ public class QuickSort {
             }
         }
         quickSort.quickSort(arrayToOrder,0,arrayToOrder.length-1);
-        for (int i=0; i<arrayToOrder.length;i++){
-            System.out.println(arrayToOrder[i]);
+
+        Writer writer = null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("datos.txt"), "utf-8"));
+            for (int i=0; i<arrayToOrder.length;i++){
+                writer.write(arrayToOrder[i]+" ");
+            }
+        } catch (IOException ex) {
+            // Report
+        } finally {
+            try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 }

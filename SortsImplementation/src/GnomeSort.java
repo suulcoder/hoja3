@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -28,9 +26,21 @@ public class GnomeSort {
                 System.out.println("Este Archivo tiene algo que no es un numero");
             }
         }
+
         gnomeSort.gnomeSort(arrayToOrder);
-        for (int i=0; i<arrayToOrder.length;i++){
-            System.out.println(arrayToOrder[i]);
+
+
+        Writer writer = null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("datos.txt"), "utf-8"));
+            for (int i=0; i<arrayToOrder.length;i++){
+                writer.write(arrayToOrder[i]+" ");
+            }
+        } catch (IOException ex) {
+            // Report
+        } finally {
+            try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 }

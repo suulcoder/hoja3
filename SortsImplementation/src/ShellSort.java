@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 public class ShellSort {
     public static void main(String[] args) throws FileNotFoundException {
@@ -20,9 +19,20 @@ public class ShellSort {
                 System.out.println("Este Archivo tiene algo que no es un numero");
             }
         }
+
         shellSort.shellSort(arrayToOrder);
-        for (int i=0; i<arrayToOrder.length;i++){
-            System.out.println(arrayToOrder[i]);
+
+        Writer writer = null;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("datos.txt"), "utf-8"));
+            for (int i=0; i<arrayToOrder.length;i++){
+                writer.write(arrayToOrder[i]+" ");
+            }
+        } catch (IOException ex) {
+            // Report
+        } finally {
+            try {writer.close();} catch (Exception ex) {/*ignore*/}
         }
     }
 }
