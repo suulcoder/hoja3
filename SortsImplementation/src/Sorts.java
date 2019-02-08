@@ -178,6 +178,7 @@ class Sorts{
             countSort(arr, n, exp);
     }
 
+    /*Tomado de Método Shell de Ordenación http://puntocomnoesunlenguaje.blogspot.com/2014/09/metodo-shell-de-ordenacion.html*/
     public static void shellSort(int A[]){
         int salto, aux, i;
         boolean cambios;
